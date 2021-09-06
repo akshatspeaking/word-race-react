@@ -1,0 +1,77 @@
+/* Keyboard */
+
+.Keyboard {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.KeysRow {
+  display: flex;
+  flex-flow: row nowrap;
+
+}
+
+.Key {
+  font-size: 1.5rem;
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 1rem;
+background: rgb(238, 238, 238);
+border-radius: 20%;
+box-shadow: 2px 3px 6px 2px rgba(0, 0, 0, 0.49);
+-webkit-box-shadow: 2px 3px 6px 2px rgba(0, 0, 0, 0.49);
+-moz-box-shadow: 2px 3px 6px 2px rgba(0, 0, 0, 0.49);
+}
+
+
+.KeyToPress {
+  background-color: aquamarine;
+}
+
+#PressedKeyTrue {
+
+  /* background-color: blueviolet; */
+   animation-name: typeFeedbackTrue;
+   animation-duration: 0.25s;
+}
+
+#PressedKeyFalse {
+
+  /* background-color: blueviolet; */
+  animation-name: typeFeedbackFalse;
+  animation-duration: 0.25s;
+}
+
+
+
+@keyframes typeFeedbackTrue {
+ 0% {
+   border-color: black;
+ }
+ 50% {
+    border-width: 5px;
+
+   border-color: green;
+ }
+
+ 100% {
+   border-color: black;
+ }
+}
+
+@keyframes typeFeedbackFalse {
+  0% {
+    border-color: black;
+  }
+
+  50% {
+    border-width: 5px;
+    border-color: red;
+  }
+
+  100% {
+    border-color: black;
+  }
+}

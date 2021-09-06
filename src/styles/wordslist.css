@@ -1,0 +1,35 @@
+.WordsList {
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: start;
+    align-items: center;
+    height: 4rem;
+    letter-spacing: 0.25rem;
+    font-size: 1.5rem;
+    overflow: hidden;
+    background-color: rgba(161, 155, 155, 0.25);
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.Word {
+  border: 1px solid black;
+  margin: 0 1rem;
+  padding: 0.5rem;
+}
+
+.Word:first-child {
+  border-color: cadetblue;
+  border-width: 5px;
+}
+
+.CurrentChar {
+  /* text-decoration: underline; */
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.CompletedChar {
+  color: green;
+}

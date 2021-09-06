@@ -1,0 +1,7 @@
+.GameBoard {
+  width: 60vw;
+  margin: 5rem auto;
+  font-family: monospace;
+      text-transform: uppercase;
+
+}
