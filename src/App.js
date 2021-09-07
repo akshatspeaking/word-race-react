@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Instructions from "./components/Instructions";
 import Keyboard from "./components/Keyboard";
+import Leaderboard from "./components/Leaderboard";
 import Scoreboard from "./components/Scoreboard";
 import WordsList from "./components/WordsList";
-import { wordBank } from "./data/wordbank";
 import useGameRules from "./hooks/useGameRules";
 import("./styles/gameboard.css");
 
@@ -12,8 +12,6 @@ function App() {
 
   const {
     wordStack,
-    addWordToStack,
-    moveToNextChar,
     stackWordIndex,
     startTimer,
     isGameEnded,
@@ -55,7 +53,7 @@ function App() {
     };
   }, [isLoggingKeys, isGameEnded]);
 
-  if (isLoggingKeys) {
+  if (isLoggingKeys && !isGameEnded) {
     return (
       <div className="GameBoard">
         <Scoreboard multiplier={multiplier} score={score} delay={delay} />
@@ -68,7 +66,7 @@ function App() {
       </div>
     );
   } else if (isGameEnded) {
-    return <Scoreboard />;
+    return <Leaderboard finalScore={score} />;
   } else {
     return <Instructions startGame={startGame} />;
   }

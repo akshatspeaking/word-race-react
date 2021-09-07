@@ -5,7 +5,7 @@ export default function WordsList({ stack, currentIndex }) {
   return (
     <div className="WordsList">
       {stack.map((word, i) => (
-        <span key={word} className="Word">
+        <span key={word + i} className="Word">
           {word.split("").map((char, j) => (
             <span
               className={
@@ -17,7 +17,7 @@ export default function WordsList({ stack, currentIndex }) {
                     : ""
                   : ""
               }
-              key={word + char}
+              key={j + char}
             >
               {char}
             </span>

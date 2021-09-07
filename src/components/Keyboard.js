@@ -14,14 +14,6 @@ export default function Keyboard({ nextChar, pressedChar, isMistype }) {
                   ? "PressedKeyFalse"
                   : "PressedKeyTrue"
                 : ""
-
-              // key === nextChar
-              //   ? "KeyToPress"
-              //   : key === pressedChar
-              //   ? isMistype
-              //     ? "PressedKeyFalse"
-              //     : "PressedKeyTrue"
-              //   : ""
             }
             className={key === nextChar ? "KeyToPress Key" : "Key"}
           >

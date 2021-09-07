@@ -1,9 +1,13 @@
 import React from "react";
+import "../styles/instructions.css";
 
 export default function Instructions({ startGame }) {
   return (
     <div className="InstructionsBoard">
-      <button onClick={startGame}>Start</button>
+      <h3>Word Race</h3>
+      <button className="start-btn" onClick={startGame}>
+        Start Game
+      </button>
     </div>
   );
 }

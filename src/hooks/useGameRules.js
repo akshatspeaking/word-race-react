@@ -1,13 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 
 const randomWords = require("random-words");
-const wordBank = randomWords({ exactly: 50 });
+
+const wordBank = randomWords({ exactly: 200 });
 
 export default function useGameRules() {
   const [wordStack, setWordStack] = useState([]);
 
   const [numberOfWordsAdded, setNumberOfWordsAdded] = useState(0);
+
   const [numberOfWordsCompleted, setNumberOfWordsCompleted] = useState(0);
+
+  const [isGameEnded, setIsGameEnded] = useState(false);
+
+  const [pressedChar, setPressedChar] = useState("");
+
+  const [wordStartTime, setWordStartTime] = useState(0);
+
+  const [score, setScore] = useState(0);
+
+  const [multiplier, setMultiplier] = useState(1);
+
+  const [isMistype, setIsMistype] = useState(false);
 
   const noWordsAdded = useRef(0);
 
@@ -17,22 +31,11 @@ export default function useGameRules() {
 
   const nextChar = useRef("");
 
-  const [isGameEnded, setIsGameEnded] = useState(false);
-
-  const [pressedChar, setPressedChar] = useState("");
-
   const timer = useRef(null);
 
   const delay = useRef(2000);
 
   const rateOfWords = useRef(50);
-
-  const [wordStartTime, setWordStartTime] = useState(0);
-
-  const [score, setScore] = useState(0);
-
-  const [multiplier, setMultiplier] = useState(1);
-  const [isMistype, setIsMistype] = useState(false);
 
   useEffect(() => {
     setWordStack(wordBank.slice(noWordsRemoved.current, noWordsAdded.current));
@@ -54,7 +57,7 @@ export default function useGameRules() {
     timer.current = setInterval(() => {
       if (noWordsAdded.current - noWordsRemoved.current < 10) {
         addWordToStack();
-        if (delay.current > 1000) {
+        if (delay.current > 1100) {
           delay.current -= rateOfWords.current;
           resetTimer();
         }
@@ -63,8 +66,6 @@ export default function useGameRules() {
       }
     }, delay.current);
   }
-
-  function completeWord() {}
 
   function removeWordFromStack() {
     setNumberOfWordsCompleted(
@@ -115,7 +116,6 @@ export default function useGameRules() {
       stackWordIndex.current ===
       wordBank[noWordsRemoved.current].length - 1
     ) {
-      // reached last character
       removeWordFromStack();
       updateWordTime();
     } else {
