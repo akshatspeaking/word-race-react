@@ -42,12 +42,10 @@ function App() {
       setPressedChar("");
     }
     if (isLoggingKeys && !isGameEnded) {
-      console.log("adding listener");
       document.addEventListener("keyup", handleKeyUp);
       document.addEventListener("keydown", handleKeyDown);
     }
     return () => {
-      console.log("removing listener");
       document.removeEventListener("keyup", handleKeyUp);
       document.removeEventListener("keydown", handleKeyDown);
     };

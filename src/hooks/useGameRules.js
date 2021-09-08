@@ -39,7 +39,6 @@ export default function useGameRules() {
 
   useEffect(() => {
     setWordStack(wordBank.slice(noWordsRemoved.current, noWordsAdded.current));
-    console.log(wordBank.slice(noWordsRemoved.current, noWordsAdded.current));
   }, [numberOfWordsAdded, numberOfWordsCompleted]);
 
   function endGame() {
@@ -53,7 +52,6 @@ export default function useGameRules() {
   }
 
   function startTimer() {
-    console.log("starting timer");
     timer.current = setInterval(() => {
       if (noWordsAdded.current - noWordsRemoved.current < 10) {
         addWordToStack();
@@ -79,21 +77,17 @@ export default function useGameRules() {
   function addWordToStack() {
     if (noWordsAdded.current === 0) {
       updateWordTime();
-      console.log(Date.now());
       nextChar.current = wordBank[0][0];
     }
     setNumberOfWordsAdded((numberOfWordsAdded) => numberOfWordsAdded + 1);
-    console.log("adding", noWordsAdded.current);
     noWordsAdded.current++;
   }
 
   function checkForCharMatch(char) {
     if (char === nextChar.current) {
-      console.log("Correct");
       setIsMistype(false);
       moveToNextChar();
     } else {
-      console.log("Incorrect", nextChar.current);
       setIsMistype(true);
       setMultiplier(1);
     }
@@ -103,7 +97,6 @@ export default function useGameRules() {
     setWordStartTime((wordStartTime) => {
       if (wordStartTime) {
         let timeTaken = (Date.now() - wordStartTime) / 1000;
-        console.log(timeTaken);
         setScore((score) => Math.ceil((score + 10 / timeTaken) * multiplier));
         setMultiplier((multiplier) => multiplier + 0.5);
       }
@@ -121,7 +114,6 @@ export default function useGameRules() {
     } else {
       nextChar.current =
         wordBank[noWordsRemoved.current][stackWordIndex.current + 1];
-      console.log();
       stackWordIndex.current++;
     }
   }
